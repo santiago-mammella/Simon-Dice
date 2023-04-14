@@ -1,0 +1,18 @@
+#color-1{
+    background-color: green;
+}
+#color-2{
+    background-color: red;
+}
+#color-3{
+    background-color: yellow;
+}
+#color-4{
+    background-color: blue;
+}
+
+.color{
+    height: 200px;
+    opacity: 0.5;
+    transition: opacity 500ms;
+}
