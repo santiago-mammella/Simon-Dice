@@ -1,8 +1,10 @@
+const boton = document.querySelector('#empezar');
 let patronUsuario = [];
 let patronMaquina = [];
 let ronda = 0;
 
 document.querySelector('#empezar').onclick = function(event){
+    boton.disabled = true;
     jugar();
 }
 
@@ -84,5 +86,6 @@ function perder(){
     patronUsuario = [];
     patronMaquina = [];
     ronda = 0;
+    boton.disabled = false;
 }
 
