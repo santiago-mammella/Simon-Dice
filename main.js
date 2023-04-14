@@ -1,6 +1,7 @@
 let patronUsuario = [];
 let patronMaquina = [];
 let ronda = 0;
+
 document.querySelector('#empezar').onclick = function(event){
     jugar();
 }
@@ -11,6 +12,7 @@ function jugar(){
 }
 
 function turnoMaquina() {
+    bloquearUsuario();
     let nuevoColor = obtenerColorAleatorio();
     patronMaquina.push(nuevoColor);
 
@@ -24,6 +26,7 @@ function turnoMaquina() {
     });
 
     setTimeout(function(){
+        desbloquearUsuario();
     }, RETRASO_TURNO_JUGADOR);
 
     patronUsuario = [];
@@ -43,6 +46,7 @@ function turnoUsuario(){
                 perder();
             }
             else if(patronUsuario.length == patronMaquina.length){
+                bloquearUsuario();
                 setTimeout(jugar, 1000);
             }
         }
@@ -60,5 +64,18 @@ function obtenerColorAleatorio(){
     const colores = document.querySelectorAll('.color');
     const indice = Math.floor(Math.random() * colores.length);
     return colores[indice];
+}
+
+function bloquearUsuario(){
+    document.querySelectorAll('.color').forEach(function(colores){
+    colores.onclick = function(){
+    };
+    }); 
+}
+
+function desbloquearUsuario(){
+    document.querySelectorAll('.color').forEach(function(colores){
+        colores.onclick = turnoUsuario;
+    });
 }
 
