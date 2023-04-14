@@ -79,3 +79,10 @@ function desbloquearUsuario(){
     });
 }
 
+function perder(){
+    bloquearUsuario();
+    patronUsuario = [];
+    patronMaquina = [];
+    ronda = 0;
+}
+
