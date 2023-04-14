@@ -4,9 +4,12 @@ let ronda = 0;
 document.querySelector('#empezar').onclick = function(event){
     jugar();
 }
+
 function jugar(){
     turnoMaquina();
+    turnoUsuario();
 }
+
 function turnoMaquina() {
     let nuevoColor = obtenerColorAleatorio();
     patronMaquina.push(nuevoColor);
@@ -25,6 +28,25 @@ function turnoMaquina() {
 
     patronUsuario = [];
     ronda ++;
+}
+
+function turnoUsuario(){
+    document.querySelectorAll('.color').forEach((div) => {
+        div.onclick = function (e) {
+            let color = e.target;
+            let index;
+            resaltar(color);
+            patronUsuario.push(color);
+            index = patronUsuario.length;
+
+            if(patronUsuario[index-1] !== patronMaquina[index-1]){
+                perder();
+            }
+            else if(patronUsuario.length == patronMaquina.length){
+                setTimeout(jugar, 1000);
+            }
+        }
+    });
 }
 
 function resaltar(color){
